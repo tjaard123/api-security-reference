@@ -2,6 +2,15 @@
 
 This project is a simple demonstration of how to secure machine-to-machine api channels.
 
+## Running the Example:
+
+First `npm install` and then
+
+```
+$ node ./api/api.js
+$ node ./consumer/consumer.js
+```
+
 ## Layman's Security Checklist
 
 - [ ] Information in transit isn't readable (Encryption)
