@@ -1,15 +1,16 @@
-// Pre-work: Obtain secret from identity provider
+// Pre-work: Obtain private key from identity provider
 
-let jwt = require('jsonwebtoken');
+let jwt = require('jsonwebtoken'); // JWT library from Auth0
+let fs = require('fs');
 let http = require('axios'); // Http client, use your preferred
 
 // Fetch secret
 let consumerId = 'ExampleConsumer01';
-let secret = 'SECRET_FROM_IDENTITY_PROVIDER'; // Store secret securely, e.g. in ENV
+var privateKey = fs.readFileSync('private.key'); // Store securely
 
-async function makeRequest(secret) {
-    // Sign token using the secret, set an expiry
-    let token = jwt.sign({ consumerId: 'ExampleConsumer01' }, secret, { expiresIn: 120 });
+async function makeRequest(privateKey) {
+    // Sign token using the private key, set an expiry
+    let token = jwt.sign({ foo: 'bar' }, privateKey, { algorithm: 'RS256', expiresIn: 120 });
     console.log(`Token: ${token}`);
 
     // Add token to Authorization header
@@ -26,7 +27,4 @@ async function makeRequest(secret) {
 }
 
 // Valid example
-makeRequest(secret);
-
-// Invalid example
-makeRequest('INVALID_SECRET');
+makeRequest(privateKey);

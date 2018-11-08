@@ -1,15 +1,15 @@
-// TODO: Use public / private key instead of shared secret
 // TODO: Use scope
 
 // Network level security - Whitelist source IP
 
-let jwt = require('jsonwebtoken');
-let app = require('express')();
+let jwt = require('jsonwebtoken'); // JWT library from Auth0
+let fs = require('fs');
+let app = require('express')(); // Http server, use your preferred
 let port = 3000;
 
-// API maintains a list of consumers with their unique secrets
+// API maintains a list of consumers with their unique public keys
 let consumers = {
-    ExampleConsumer01: { secret: 'SECRET_FROM_IDENTITY_PROVIDER' }
+    ExampleConsumer01: { publicKey: fs.readFileSync('public.key') }
 }
 
 // Authentication middleware to run with every request - use your preferred middleware, e.g. express-jwt
@@ -18,7 +18,7 @@ function middleware (req) {
     token = req.headers.authorization.substring(7);
 
     // Verify (signature, expiry etc.)
-    let decoded = jwt.verify(token, consumers[req.headers['consumer-id']].secret);
+    let decoded = jwt.verify(token, consumers[req.headers['consumer-id']].publicKey);
     console.log(`Decoded: ${JSON.stringify(decoded)}`);
 }
 
