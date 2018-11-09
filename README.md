@@ -14,6 +14,7 @@ $ node ./consumer/consumer.js
 ## Layman's Security Checklist
 
 - [ ] Information in transit isn't readable (Encryption)
+- [ ] Tamper proof request (Digital Signature)
 - [ ] Consumer is talking to real API (Certificate)
 - [ ] Consumer is who says he is (Authentication)
 - [ ] Limit damage of compromised channel (Token Expiry)

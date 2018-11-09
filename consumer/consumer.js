@@ -6,7 +6,7 @@ let http = require('axios'); // Http client, use your preferred
 
 // Fetch secret
 let consumerId = 'ExampleConsumer01';
-var privateKey = fs.readFileSync('private.key'); // Store securely
+let privateKey = fs.readFileSync('private.key'); // Store securely
 
 async function makeRequest(privateKey) {
     // Sign token using the private key, set an expiry
