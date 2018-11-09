@@ -9,6 +9,7 @@ First `npm install` and then
 ```
 $ node ./api/api.js
 $ node ./consumer/consumer.js
+$ node ./attacker/attacker.js
 ```
 
 ## Layman's Security Checklist
